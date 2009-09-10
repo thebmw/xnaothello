@@ -1,0 +1,1 @@
+C:\Dev\Zune\Othello\Othello\Content\obj\x86\Debug\ResolveAssemblyReference.cache
