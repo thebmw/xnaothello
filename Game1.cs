@@ -111,7 +111,7 @@ namespace Othello
             setsel();
             t.Tick += new EventHandler<EventArgs>(t_Tick);
             start.Tick += new EventHandler<EventArgs>(start_Tick);
-            start.Start();
+            
             menu.Add(new Othello.Menu.MenuItem("Single Player", new Vector2(5, 5), true, Color.Red));
             menu.Add(new Othello.Menu.MenuItem("Multiplayer", new Vector2(5, 35), false, Color.White));
             menu.Add(new Othello.Menu.MenuItem("Wireless Multiplayer", new Vector2(5, 65), false, Color.White));
@@ -165,6 +165,7 @@ namespace Othello
             SM["Start"].Play();
             // TODO: use this.Content to load your game content here
             tx2dcol = new Texture2DColl(black, white, blank);
+            start.Start();
         }
 
         /// <summary>
