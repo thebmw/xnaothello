@@ -50,3 +50,4 @@ C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\ResolveAssemblyReference.cache
 C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\Othello.exe
 C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\Othello.pdb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreen.xnb
