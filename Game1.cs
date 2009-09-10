@@ -36,6 +36,7 @@ namespace Othello
         Texture2D selB;
         Texture2D selected;
         Texture2D pop;
+        Texture2D StartScreen;
         Texture2DColl tx2dcol;
         Int32 turn = -1;
         Point selectedscreen;
@@ -47,9 +48,9 @@ namespace Othello
         Menu.Menu menu = new Othello.Menu.Menu();
         Menu.Menu wierless = new Othello.Menu.Menu();
         Menu.Menu gameselect = new Othello.Menu.Menu();
-
+        Timer start = new Timer(2000);
         int sid = 0;
-
+        Boolean startscreen = true;
         private int blackCount;
         private int whiteCount;
         private int emptyCount;
@@ -109,6 +110,8 @@ namespace Othello
             // TODO: Add your initialization logic here
             setsel();
             t.Tick += new EventHandler<EventArgs>(t_Tick);
+            start.Tick += new EventHandler<EventArgs>(start_Tick);
+            start.Start();
             menu.Add(new Othello.Menu.MenuItem("Single Player", new Vector2(5, 5), true, Color.Red));
             menu.Add(new Othello.Menu.MenuItem("Multiplayer", new Vector2(5, 35), false, Color.White));
             menu.Add(new Othello.Menu.MenuItem("Wireless Multiplayer", new Vector2(5, 65), false, Color.White));
@@ -116,6 +119,11 @@ namespace Othello
             wierless.Add(new Othello.Menu.MenuItem("Host", new Vector2(5, 5), true, Color.Red));
             wierless.Add(new Othello.Menu.MenuItem("Join", new Vector2(5, 35), false, Color.White));
             base.Initialize();
+        }
+
+        void start_Tick(object sender, EventArgs e)
+        {
+            startscreen = false;
         }
 
         void t_Tick(object sender, EventArgs e)
@@ -152,6 +160,7 @@ namespace Othello
             SM.Add(Content.Load<SoundEffect>("Sounds\\Turn"), "Change Turn");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Win"), "Win");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Win"), "Lose");
+            StartScreen = Content.Load<Texture2D>("StartScreen");
             //Controls = Content.Load<Help>("Help\\Controls");
             SM["Start"].Play();
             // TODO: use this.Content to load your game content here
@@ -741,13 +750,14 @@ namespace Othello
             }
             #endregion
             t.Check();
+            start.Check();
             if (PowerStatus.BatteryChargeStatus == BatteryChargeStatus.Critical)
             {
                 this.Exit();
             }
             base.Update(gameTime);
         }
-
+       
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -756,7 +766,10 @@ namespace Othello
         {
             GraphicsDevice.Clear(Color.Green);
             spriteBatch.Begin();
-            
+            if (startscreen)
+            {
+                spriteBatch.Draw(StartScreen, new Vector2(0, 0), Color.White);
+            }
             #region Multi
             if (mode == Mode.multi)
             {
