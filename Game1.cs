@@ -44,7 +44,7 @@ namespace Othello
         Int32 rise;
         Int32 run;
         SpriteFont font1;
-        Mode mode = Mode.start;
+        Mode mode = Mode.startscreen;
         Menu.Menu menu = new Othello.Menu.Menu();
         Menu.Menu wierless = new Othello.Menu.Menu();
         Menu.Menu gameselect = new Othello.Menu.Menu();
@@ -92,7 +92,8 @@ namespace Othello
             new_continue,
             waiting,
             gameselect,
-            game
+            game,
+            startscreen
         }
 
         /// <summary>
@@ -124,6 +125,7 @@ namespace Othello
         void start_Tick(object sender, EventArgs e)
         {
             startscreen = false;
+            mode = Mode.start;
         }
 
         void t_Tick(object sender, EventArgs e)
@@ -196,7 +198,7 @@ namespace Othello
         protected override void Update(GameTime gameTime)
         {
 
-
+            
 
             GamePadState gps = GamePad.GetState(PlayerIndex.One);
             // Allows the game to exit
@@ -765,11 +767,16 @@ namespace Othello
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
+            
             spriteBatch.Begin();
             if (startscreen)
             {
+                GraphicsDevice.Clear(Color.Black);
                 spriteBatch.Draw(StartScreen, new Vector2(0, 0), Color.White);
+            }
+            else
+            {
+                GraphicsDevice.Clear(Color.Green);
             }
             #region Multi
             if (mode == Mode.multi)
