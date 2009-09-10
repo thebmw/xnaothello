@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Pieces\BlackPiece.bmp</Source>
+      <Name>Pieces\BlackPiece</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\BlackPiece.xnb</Output>
+      <Time>2009-09-09T20:32:07.5384-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\WhitePiece.bmp</Source>
+      <Name>Pieces\WhitePiece</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\WhitePiece.xnb</Output>
+      <Time>2009-09-09T20:32:34.5394-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\Empty.bmp</Source>
+      <Name>Pieces\Empty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\Empty.xnb</Output>
+      <Time>2009-04-06T16:56:48.0625-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\Selected.bmp</Source>
+      <Name>Pieces\SelectedB</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\SelectedB.xnb</Output>
+      <Time>2009-04-06T18:18:59.453125-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\SelW.bmp</Source>
+      <Name>Pieces\SelW</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\SelW.xnb</Output>
+      <Time>2009-04-06T17:58:39.671875-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\SelB.bmp</Source>
+      <Name>Pieces\SelB</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\SelB.xnb</Output>
+      <Time>2009-04-06T17:58:24.4375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>BlackOverlay.bmp</Source>
+      <Name>BlackOverlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\BlackOverlay.xnb</Output>
+      <Time>2009-05-04T16:10:32.109375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>GameThumbnail.png</Source>
+      <Name>GameThumbnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\GameThumbnail.xnb</Output>
+      <Time>2009-08-14T21:04:14.15-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Arial.spritefont</Source>
+      <Name>Arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Arial.xnb</Output>
+      <Time>2009-04-06T19:17:07.390625-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Ding.wav</Source>
+      <Name>Sounds\Ding</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Ding.xnb</Output>
+      <Time>2009-05-03T14:36:10.875-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Error.wav</Source>
+      <Name>Sounds\Error</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Error.xnb</Output>
+      <Time>2009-05-03T14:37:02.25-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Mstart.wav</Source>
+      <Name>Sounds\Mstart</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Mstart.xnb</Output>
+      <Time>2009-05-03T14:37:40.09375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Mstop.wav</Source>
+      <Name>Sounds\Mstop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Mstop.xnb</Output>
+      <Time>2009-05-03T14:37:40.109375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Merr.wav</Source>
+      <Name>Sounds\Merr</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Merr.xnb</Output>
+      <Time>2009-05-03T14:37:40.078125-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\GameStart.wav</Source>
+      <Name>Sounds\GameStart</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\GameStart.xnb</Output>
+      <Time>2009-05-03T15:20:58.125-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\GameExit.wav</Source>
+      <Name>Sounds\GameExit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\GameExit.xnb</Output>
+      <Time>2009-05-03T15:21:18.234375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Click.wav</Source>
+      <Name>Sounds\Click</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Click.xnb</Output>
+      <Time>2009-05-03T15:26:19.265625-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\ModeStart.wav</Source>
+      <Name>Sounds\ModeStart</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\ModeStart.xnb</Output>
+      <Time>2009-05-03T15:28:04.390625-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Turn.wav</Source>
+      <Name>Sounds\Turn</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Turn.xnb</Output>
+      <Time>2009-05-03T17:35:51.359375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Win.mp3</Source>
+      <Name>Sounds\Win</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Sounds\Win.xnb</Output>
+      <Time>2009-05-03T17:51:11.125-04:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Zune</TargetPlatform>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Dev\Zune\Othello Alpha\Othello\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Dev\Zune\Othello Alpha\Othello\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Dev\Zune\Othello Alpha\Othello\Content\obj\Zune\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2009-05-28T00:16:14-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2009-05-28T00:16:06-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2009-05-28T00:16:16-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2009-05-28T00:16:26-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2009-05-28T00:16:12-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2009-05-28T00:16:06-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2009-07-01T17:04:29.82-04:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
