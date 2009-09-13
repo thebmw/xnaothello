@@ -48,7 +48,7 @@ namespace Othello
         Menu.Menu menu = new Othello.Menu.Menu();
         Menu.Menu wierless = new Othello.Menu.Menu();
         Menu.Menu gameselect = new Othello.Menu.Menu();
-        Timer start = new Timer(2000);
+        Timer start = new Timer(6000);
         int sid = 0;
         Boolean startscreen = true;
         private int blackCount;
@@ -1234,14 +1234,15 @@ namespace Othello
                         r = row + dr;
                         c = col + dc;
                         // Flip 'em.
+                        int change = 0;
                         while (tx2dcol.spots[r, c].col == -color)
                         {
-                            Log("changeing");
+                            change++;
                             tx2dcol.setp(r, c, color);
                             r += dr;
                             c += dc;
                         }
-
+                        Log("Changed " + change.ToString() + " pieces");
                         Log(String.Format("{0} layed a piece at {1}, {2}.", color == -1 ? "Black" : "White", row, color));
                         /*
                         int i, j;
@@ -1642,8 +1643,8 @@ namespace Othello
                 {
                     if (turn == 1)
                     {
-                        //MakeComputerMove();
-                        t.Start();
+                        MakeComputerMove();
+                        //t.Start();
                     }
                     else
                     {
