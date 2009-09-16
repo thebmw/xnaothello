@@ -198,6 +198,7 @@ namespace Othello
         protected override void Update(GameTime gameTime)
         {
 
+            TouchCollection curTouches = TouchPanel.GetState();
             
 
             GamePadState gps = GamePad.GetState(PlayerIndex.One);
@@ -206,6 +207,32 @@ namespace Othello
             #region Multi
             if (mode == Mode.multi)
             {
+                foreach (TouchLocation location in curTouches)
+                {
+                    switch (location.State)
+                    {
+                        case TouchLocationState.Pressed:
+                            //Start tracking a particular touch location
+                            //In this example, you start the stroke from a special
+                            //area of the screen.
+                            if (location.Position.X < 240 && location.Position.Y < 240)
+                            {
+                                int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 30).ToString()), 0).ToString());
+                                int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 30).ToString()), 0).ToString());
+                                if (IsValidMove(turn, x, y))
+                                {
+                                    MakeMove(turn, x, y);
+                                    changeturn();
+                                }
+                            }
+                            break;
+                        case TouchLocationState.Released:
+
+
+
+                            break;
+                    }
+                }
                 if (!up && gps.IsButtonDown(Buttons.DPadUp))
                 {
                     movesel_up();
@@ -372,6 +399,33 @@ namespace Othello
             #region Wireless
             if (mode == Mode.wireless)
             {
+                foreach (TouchLocation location in curTouches)
+                {
+                    switch (location.State)
+                    {
+                        case TouchLocationState.Pressed:
+                            //Start tracking a particular touch location
+                            //In this example, you start the stroke from a special
+                            //area of the screen.
+                            if (location.Position.X < 240 && location.Position.Y < 240)
+                            {
+                                int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 30).ToString()), 0).ToString());
+                                int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 30).ToString()), 0).ToString());
+                                if (IsValidMove(turn, x, y))
+                                {
+                                    MakeMove(turn, x, y);
+                                    sendMessage(new Point(x, y));
+                                    changeturn();
+                                }
+                            }
+                            break;
+                        case TouchLocationState.Released:
+
+
+
+                            break;
+                    }
+                }
                 if (this.networkSession != null)
                 {
                     this.networkSession.Update();
@@ -515,6 +569,32 @@ namespace Othello
             #region Single
             if (mode == Mode.single)
             {
+                foreach (TouchLocation location in curTouches)
+                {
+                    switch (location.State)
+                    {
+                        case TouchLocationState.Pressed:
+                            //Start tracking a particular touch location
+                            //In this example, you start the stroke from a special
+                            //area of the screen.
+                            if (location.Position.X < 240 && location.Position.Y < 240)
+                            {
+                                int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 30).ToString()), 0).ToString());
+                                int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 30).ToString()), 0).ToString());
+                                if (IsValidMove(turn, x, y))
+                                {
+                                    MakeMove(turn, x, y);
+                                    changeturn();
+                                }
+                            }
+                            break;
+                        case TouchLocationState.Released:
+
+
+
+                            break;
+                    }
+                }
                 if (gps.IsButtonDown(Buttons.A) && gps.IsButtonDown(Buttons.B))
                 {
                     Win(-1);
@@ -929,22 +1009,24 @@ namespace Othello
                 {
                     if (blackCount > whiteCount)
                     {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("Black Wins");
-                        Win(-1);
-                        spriteBatch.DrawString(font1, "Black Wins", timePosition, Color.Black);
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
                     }
                     else
                     {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("White Wins");
-                        Win(1);
-                        spriteBatch.DrawString(font1, "White Wins", timePosition, Color.White);
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
                     }
                 }
                 line[1] = "Empty: " + emptyCount.ToString();
                 line[2] = "Black: " + blackCount.ToString();
                 line[3] = "White: " + whiteCount.ToString();
                 spriteBatch.DrawString(font1, line[0], vec2frompoint(new Point(0, 240)), col);
-                spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 240)), Color.Green);
+                //spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 240)), Color.Green);
                 spriteBatch.DrawString(font1, line[2], vec2frompoint(new Point(0, 270)), Color.Black);
                 spriteBatch.DrawString(font1, line[3], vec2frompoint(new Point(120, 270)), Color.White);
             }
@@ -1063,13 +1145,10 @@ namespace Othello
                 winstart = true;
                 if (mode == Mode.single)
                 {
-                    AudioListener al = new AudioListener();
-                    al.Position = new Vector3(0, 0, 0);
-                    AudioEmitter ae = new AudioEmitter();
-                    ae.Position = new Vector3(0, 0, 0);
+                    
                     try
                     {
-                        //SM[col == -1 ? "Win" : "Lose"].Sound_Effect.Play3D(al, ae);
+                        
                         SM[col == -1 ? "Win" : "Lose"].Play();
                     }
                     catch(Exception)
@@ -1557,15 +1636,14 @@ namespace Othello
         {
             
             Random ra = new Random(0);
-            int hard = ra.Next(11);
-            Boolean easy = (hard % 2 == 0);
+            
             Int32 x = 0;
             Int32 y = 0;
             Int32 r;
             Int32 c;
             List<Int32> arr = new List<int>();
             List<Point> arr2 = new List<Point>();
-            Int64 runcount = 0;
+            
             for (int co = 0; co < 8; co++)
             {
                 for (int ro = 0; ro < 8; ro++)
@@ -1573,7 +1651,7 @@ namespace Othello
 
                     if (IsValidMove(1, co, ro))
                     {
-                        Int32 num = 0;
+                        Int32 num = 1;
                         for (int dr = -1; dr <= 1; dr++)
                             for (int dc = -1; dc <= 1; dc++)
                                 // Are there any outflanked opponents?
@@ -1596,8 +1674,8 @@ namespace Othello
                     }
                 }
             }
-            
-                searchv = arr.Max();
+
+            searchv = arr.Max<int>();
             
             Int32 id = arr.FindIndex(find);
             Point p = arr2[id];
@@ -1636,15 +1714,34 @@ namespace Othello
         public void changeturn()
         {
             turn = -turn;
-            if (!HasAnyValidMove(turn))
+            Log("Changed Turn");
+            if (!HasAnyValidMove(1) && !HasAnyValidMove(-1))
+            {
+                if (blackCount > whiteCount)
+                {
+
+                    Win(1);
+
+                }
+                else
+                {
+
+                    Win(1);
+
+                }
+            }
+            else if (!HasAnyValidMove(turn))
             {
                 changeturn();
+            }
+            else if (HasAnyValidMove(turn))
+            {
                 if (mode == Mode.single)
                 {
                     if (turn == 1)
                     {
-                        MakeComputerMove();
-                        //t.Start();
+                        //MakeComputerMove();
+                        t.Start();
                     }
                     else
                     {
@@ -1667,39 +1764,6 @@ namespace Othello
                             SM["Change Turn"].Play();
                         }
                     }
-                }
-                
-            }
-            else
-            {
-                if (mode == Mode.single)
-                {
-                    if (turn == 1)
-                    {
-                        //MakeComputerMove();
-                        t.Start();
-                    }
-                }
-                else if (mode == Mode.wireless)
-                {
-                    if (multiplayerRole == MultiplayerRole.Server)
-                    {
-                        if (turn == -1)
-                        {
-                            SM["Change Turn"].Play();
-                        }
-                    }
-                    else
-                    {
-                        if (turn == 1)
-                        {
-                            SM["Change Turn"].Play();
-                        }
-                    }
-                }
-                else
-                {
-                    SM["Change Turn"].Play();
                 }
             }
         }
