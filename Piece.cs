@@ -20,6 +20,23 @@ namespace Othello
         public Point boardplace;
         public Point screenplace;
         public Int32 col;
+        Boolean isZuneHD
+        {
+            get
+            {
+                if (Program.HD)
+                {
+                    return true;
+                }
+
+                else if (new AccelerometerCapabilities().IsConnected)
+                {
+                    return true;
+                }
+                
+                return false;
+            }
+        }
         public Piece()
         {
 
@@ -28,7 +45,7 @@ namespace Othello
         {
             image = pic;
             boardplace = bp;
-            screenplace = new Point(bp.X * 30, bp.Y * 30);
+            screenplace = new Point(bp.X * (isZuneHD ? 34 : 30), bp.Y * (isZuneHD ? 34 : 30));
             col = icol;
         }
     }
