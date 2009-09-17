@@ -26,6 +26,14 @@ namespace Othello.Menu
             {
                 return this.FindIndex(Search);
             }
+            set
+            {
+                int i = selectedIndex;
+                this[i].Selected = false;
+                this[i].Color = Color.White;
+                this[value].Color = Color.Red;
+                this[value].Selected = true;
+            }
         }
         private bool Search(MenuItem item)
         {
