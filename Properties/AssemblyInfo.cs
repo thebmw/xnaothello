@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Othello")]
 [assembly: AssemblyProduct("Othello")]
-[assembly: AssemblyDescription("A simple game of othello/reversi.")]
+[assembly: AssemblyDescription("A simple game of othello/reversi. Now works with Zune HD.")]
 [assembly: AssemblyCompany("rgames a division of renraw inc.")]
 [assembly: AssemblyCopyright("Copyright © renraw 2009")]
 [assembly: AssemblyTrademark("rgamez")]

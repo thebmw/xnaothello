@@ -819,6 +819,28 @@ namespace Othello
             {
                 if (mode == Mode.gameselect)
                 {
+                    bool moved = false;
+                    foreach (TouchLocation location in curTouches)
+                    {
+                       
+                        switch (location.State)
+                        {
+                            case TouchLocationState.Moved:
+                                //Start tracking a particular touch location
+                                //In this example, you start the stroke from a special
+                                //area of the screen.
+                                moved = true;
+                                break;
+                            case TouchLocationState.Released:
+                                if (!moved)
+                                {
+                                    gameselect.selectedIndex = int.Parse(Math.Round(decimal.Parse(((location.Position.Y - 5) / 30).ToString())).ToString());
+                                    Connect(gameselect.selectedIndex);
+                                }
+
+                                break;
+                        }
+                    }
                     if (!clickA && gps.IsButtonDown(Buttons.A))
                     {
                         Connect(gameselect.selectedIndex);
@@ -1687,6 +1709,10 @@ namespace Othello
                 this.networkSession.Dispose();
             }
             mode = Mode.single;
+            if (turn == 1)
+            {
+                MakeComputerMove();
+            }
         }
 
         void networkSession_GamerJoined(object sender, GamerJoinedEventArgs e)

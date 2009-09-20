@@ -2,4 +2,8 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Zune' ">
+    <StartArguments>
+    </StartArguments>
+  </PropertyGroup>
 </Project>

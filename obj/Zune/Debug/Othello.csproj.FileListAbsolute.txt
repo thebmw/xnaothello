@@ -1,29 +1,3 @@
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\BlackPiece.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\WhitePiece.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Empty.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Othello.exe
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Othello.pdb
-C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\ResolveAssemblyReference.cache
-C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\Othello.exe
-C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\Othello.pdb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\SelW.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\SelB.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\SelectedB.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Arial.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Error.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Ding.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Mstart.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Mstop.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Merr.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Click.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\GameStart.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\GameExit.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\ModeStart.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Turn.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Win.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\BlackOverlay.xnb
-C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\GameThumbnail.xnb
 C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\BlackPiece.xnb
 C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\WhitePiece.xnb
 C:\Dev\Zune\Othello Alpha\Othello\bin\Zune\Debug\Content\Pieces\Empty.xnb
@@ -50,4 +24,37 @@ C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\ResolveAssemblyReference.cache
 C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\Othello.exe
 C:\Dev\Zune\Othello Alpha\Othello\obj\Zune\Debug\Othello.pdb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\BlackPiece.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\WhitePiece.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Empty.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Selected.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\SelW.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\SelB.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\BlackOverlay.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\GameThumbnail.xnb
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreen.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreenHD.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\BlackPiece.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\WhitePiece.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\Empty.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\Selected.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\SelB.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\SelW.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Arial.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Ding.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Error.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Mstart.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Mstop.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Merr.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\GameStart.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\GameExit.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Click.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\ModeStart.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Turn.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Win.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Othello.exe
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Othello.pdb
+C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\ResolveAssemblyReference.cache
+C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\Othello.exe
+C:\Dev\Zune\Othello\Othello\obj\Zune\Debug\Othello.pdb

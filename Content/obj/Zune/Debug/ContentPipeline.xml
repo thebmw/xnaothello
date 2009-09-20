@@ -30,11 +30,11 @@
     </Item>
     <Item>
       <Source>Pieces\Selected.bmp</Source>
-      <Name>Pieces\SelectedB</Name>
+      <Name>Pieces\Selected</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\SelectedB.xnb</Output>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Selected.xnb</Output>
       <Time>2009-09-09T21:09:53.6434-04:00</Time>
     </Item>
     <Item>
@@ -80,7 +80,70 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreen.xnb</Output>
-      <Time>2009-09-10T15:54:34.932-04:00</Time>
+      <Time>2009-09-16T16:53:20.683-04:00</Time>
+    </Item>
+    <Item>
+      <Source>StartScreenHD.PNG</Source>
+      <Name>StartScreenHD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreenHD.xnb</Output>
+      <Time>2009-09-16T17:08:05.044-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\HD\BlackPiece.bmp</Source>
+      <Name>Pieces\HD\BlackPiece</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\BlackPiece.xnb</Output>
+      <Time>2009-09-16T17:14:51.668-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\HD\WhitePiece.bmp</Source>
+      <Name>Pieces\HD\WhitePiece</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\WhitePiece.xnb</Output>
+      <Time>2009-09-16T17:16:09.287-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\HD\Empty.bmp</Source>
+      <Name>Pieces\HD\Empty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\Empty.xnb</Output>
+      <Time>2009-09-16T17:17:29.948-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\HD\Selected.bmp</Source>
+      <Name>Pieces\HD\Selected</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\Selected.xnb</Output>
+      <Time>2009-09-16T17:18:40.344-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\HD\SelB.bmp</Source>
+      <Name>Pieces\HD\SelB</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\SelB.xnb</Output>
+      <Time>2009-09-16T18:15:26.688-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Pieces\HD\SelW.bmp</Source>
+      <Name>Pieces\HD\SelW</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\HD\SelW.xnb</Output>
+      <Time>2009-09-16T18:15:26.091-04:00</Time>
     </Item>
     <Item>
       <Source>Arial.spritefont</Source>
