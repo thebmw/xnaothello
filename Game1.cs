@@ -49,6 +49,7 @@ namespace Othello
         Menu.Menu menu = new Othello.Menu.Menu();
         Menu.Menu wierless = new Othello.Menu.Menu();
         Menu.Menu gameselect = new Othello.Menu.Menu();
+        Menu.Menu newgame = new Othello.Menu.Menu();
         Timer start = new Timer(6000);
         int sid = 0;
         Boolean startscreen = true;
@@ -137,6 +138,8 @@ namespace Othello
             wierless.Add(new Othello.Menu.MenuItem("Host", new Vector2(5, 5), true, Color.Red));
             wierless.Add(new Othello.Menu.MenuItem("Join", new Vector2(5, 35), false, Color.White));
             wierless.Add(new Othello.Menu.MenuItem("Back", new Vector2(5, 65), false, Color.White));
+            newgame.Add(new Othello.Menu.MenuItem("New Game", new Vector2(5, 5), true, Color.Red));
+            newgame.Add(new Othello.Menu.MenuItem("Continue Game", new Vector2(5, 35), false, Color.White));
             base.Initialize();
         }
 
@@ -161,12 +164,12 @@ namespace Othello
             spriteBatch = new SpriteBatch(GraphicsDevice);
             if (!isZuneHD)
             {
-                black = Content.Load<Texture2D>("Pieces\\BlackPiece");
-                white = Content.Load<Texture2D>("Pieces\\WhitePiece");
-                blank = Content.Load<Texture2D>("Pieces\\Empty");
-                sel = Content.Load<Texture2D>("Pieces\\Selected");
-                selB = Content.Load<Texture2D>("Pieces\\SelW");
-                selW = Content.Load<Texture2D>("Pieces\\SelB");
+                black = Content.Load<Texture2D>("Pieces\\Black");
+                white = Content.Load<Texture2D>("Pieces\\White");
+                blank = Content.Load<Texture2D>("Pieces\\Blank");
+                sel = Content.Load<Texture2D>("Pieces\\Sblank");
+                selB = Content.Load<Texture2D>("Pieces\\Sblack");
+                selW = Content.Load<Texture2D>("Pieces\\Swhite");
             
             }
             else
@@ -236,7 +239,8 @@ namespace Othello
 
             GamePadState gps = GamePad.GetState(PlayerIndex.One);
             // Allows the game to exit
-
+            Vector2 loca = new Vector2();
+            bool back = false;
             #region Multi
             if (mode == Mode.multi)
             {
@@ -245,11 +249,13 @@ namespace Othello
                     switch (location.State)
                     {
                         case TouchLocationState.Pressed:
+                            loca = location.Position;
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
                             //area of the screen.
                             if (location.Position.X < 272 && location.Position.Y < 272)
                             {
+
                                 int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0).ToString());
                                 int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0).ToString());
                                 if (IsValidMove(turn, x, y))
@@ -259,9 +265,9 @@ namespace Othello
                                 }
                             }
                             break;
-                        case TouchLocationState.Released:
-
-
+                        case TouchLocationState.Moved:
+                            
+                            
 
                             break;
                     }
@@ -349,7 +355,11 @@ namespace Othello
                 if (!back && gps.IsButtonDown(Buttons.Back))
                 {
                     mode = Mode.start;
-
+                    if (gameover)
+                    {
+                        tx2dcol = new Texture2DColl(black, white, blank);
+                        gameover = false;
+                    }
                     back = true;
                 }
                 if (back && gps.IsButtonUp(Buttons.Back))
@@ -624,7 +634,11 @@ namespace Othello
                 if (!back && gps.IsButtonDown(Buttons.Back))
                 {
                     mode = Mode.start;
-                    tx2dcol = new Texture2DColl(black, white, blank);
+                    if (gameover)
+                    {
+                        tx2dcol = new Texture2DColl(black, white, blank);
+                        gameover = false;
+                    }
                     back = true;
                 }
                 if (back && gps.IsButtonUp(Buttons.Back))
@@ -762,6 +776,11 @@ namespace Othello
                 if (!back && gps.IsButtonDown(Buttons.Back))
                 {
                     mode = Mode.start;
+                    if (gameover)
+                    {
+                        tx2dcol = new Texture2DColl(black, white, blank);
+                        gameover = false;
+                    }
                     back = true;
                 }
                 if (back && gps.IsButtonUp(Buttons.Back))
@@ -776,9 +795,13 @@ namespace Othello
             #region New Continue
             if (mode == Mode.new_continue)
             {
+
                 if (!clickA && gps.IsButtonDown(Buttons.A))
                 {
-                    tx2dcol = new Texture2DColl(black, white, blank);
+                    if (newgame.selectedIndex == 0)
+                    {
+                        tx2dcol = new Texture2DColl(black, white, blank);
+                    }
                     mode = starting;
                     isExistingGame = false;
                     clickA = true;
@@ -1264,8 +1287,10 @@ namespace Othello
             return new Vector2(float.Parse(point.X.ToString()), float.Parse(point.Y.ToString()));
         }
         public bool winstart = false;
+        bool gameover = false;
         public void Win(int col)
         {
+            gameover = true;
             if (!winstart)
             {
                 winstart = true;
