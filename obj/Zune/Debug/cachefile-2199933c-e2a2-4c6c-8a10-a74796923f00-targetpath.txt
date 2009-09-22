@@ -1,9 +1,3 @@
-Content\Pieces\BlackPiece.xnb
-Content\Pieces\WhitePiece.xnb
-Content\Pieces\Empty.xnb
-Content\Pieces\Selected.xnb
-Content\Pieces\SelW.xnb
-Content\Pieces\SelB.xnb
 Content\BlackOverlay.xnb
 Content\GameThumbnail.xnb
 Content\StartScreen.xnb
@@ -26,3 +20,9 @@ Content\Sounds\Click.xnb
 Content\Sounds\ModeStart.xnb
 Content\Sounds\Turn.xnb
 Content\Sounds\Win.xnb
+Content\Pieces\Black.xnb
+Content\Pieces\Blank.xnb
+Content\Pieces\Sblack.xnb
+Content\Pieces\Sblank.xnb
+Content\Pieces\Swhite.xnb
+Content\Pieces\White.xnb
