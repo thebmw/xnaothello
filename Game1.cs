@@ -357,7 +357,10 @@ namespace Othello
                     mode = Mode.start;
                     if (gameover)
                     {
-                        tx2dcol = new Texture2DColl(black, white, blank);
+                        //tx2dcol = null;
+                        //tx2dcol = new Texture2DColl(black, white, blank);
+                       
+                        tx2dcol.reset();
                         gameover = false;
                     }
                     back = true;
@@ -439,7 +442,7 @@ namespace Othello
                 if (!back && gps.IsButtonDown(Buttons.Back))
                 {
                     //SM["Stop"].Play();
-                    Exit();
+                    //Exit();
                 }
                 if (back && gps.IsButtonUp(Buttons.Back))
                 {
@@ -636,7 +639,8 @@ namespace Othello
                     mode = Mode.start;
                     if (gameover)
                     {
-                        tx2dcol = new Texture2DColl(black, white, blank);
+                        //tx2dcol = new Texture2DColl(black, white, blank);
+                        tx2dcol.reset();
                         gameover = false;
                     }
                     back = true;
@@ -776,12 +780,23 @@ namespace Othello
                 if (!back && gps.IsButtonDown(Buttons.Back))
                 {
                     mode = Mode.start;
+                    back = true;
                     if (gameover)
                     {
-                        tx2dcol = new Texture2DColl(black, white, blank);
                         gameover = false;
+                        //tx2dcol = null;
+                        //tx2dcol = new Texture2DColl(black, white, blank);
+                        try
+                        {
+                            tx2dcol.reset();
+                        }
+                        catch (Exception e)
+                        {
+
+                        }
+                        
                     }
-                    back = true;
+                    
                 }
                 if (back && gps.IsButtonUp(Buttons.Back))
                 {
@@ -1088,7 +1103,7 @@ namespace Othello
                         spriteBatch.DrawString(font1, "White Wins", timePosition, Color.White);
                     }
                 }
-                line[1] = "O:" + networkSession.BytesPerSecondReceived.ToString() + " I:" + networkSession.BytesPerSecondSent.ToString();
+                line[1] = networkSession.SimulatedLatency.Milliseconds.ToString();
                 line[2] = "Black: " + blackCount.ToString();
                 line[3] = "White: " + whiteCount.ToString();
                 if (isZuneHD)
@@ -1550,8 +1565,14 @@ namespace Othello
                     {
                         if (s.CurrentGamerCount <2)
                         {
-                            gameselect.Add(new Othello.Menu.MenuItem(s.HostGamertag + " " + s.QualityOfService.AverageRoundtripTime.ToString(), new Vector2(5, x), x == 5 ? true : false, x == 5 ? Color.Red : Color.White));
-                            x = x + 30;
+                            if (s.SessionProperties.Count > 0)
+                            {
+                                if (s.SessionProperties[0] == 41523457)
+                                {
+                                    gameselect.Add(new Othello.Menu.MenuItem(s.HostGamertag + " " + s.QualityOfService.AverageRoundtripTime.Milliseconds.ToString(), new Vector2(5, x), x == 5 ? true : false, x == 5 ? Color.Red : Color.White));
+                                    x = x + 30;
+                                }
+                            }
                         }
                     }
                     mode = Mode.gameselect;
@@ -1688,7 +1709,10 @@ namespace Othello
             this.multiplayerRole = MultiplayerRole.Server;
             Log("Server");
             //createSession();
-            this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2);
+            NetworkSessionProperties nsp = new NetworkSessionProperties();
+            nsp[0] = 41523457;
+            this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2, 0, nsp);
+           
 
             this.networkSession.GamerJoined += new EventHandler<GamerJoinedEventArgs>(networkSession_GamerJoined);
             this.networkSession.GamerLeft += new EventHandler<GamerLeftEventArgs>(networkSession_GamerLeft);
@@ -1746,6 +1770,7 @@ namespace Othello
             {
                 mode = Mode.wireless;
             }
+            networkSession.StartGame();
             SM["Wifi Start"].Play();
             Log("Gamer joined");
         }

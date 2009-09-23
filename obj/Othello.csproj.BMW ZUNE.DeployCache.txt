@@ -6,7 +6,7 @@ C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\
 C:\Dev\Zune\Othello\Othello\GameThumbnail.png
 2009-09-10T01:10:05.8984000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Othello.exe
-2009-09-22T23:25:09.4350000Z
+2009-09-23T21:06:32.5380000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Arial.xnb
 2009-09-17T19:49:20.2720000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\BlackOverlay.xnb
