@@ -13,6 +13,8 @@
     <XnaPlatform>Zune</XnaPlatform>
     <XnaCrossPlatformGroupID>2d494528-bb66-4857-86c7-0e49b1c61df2</XnaCrossPlatformGroupID>
     <Thumbnail>GameThumbnail.png</Thumbnail>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>RGAMEZINCBMW.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Zune' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,6 +81,9 @@
       <Project>2199933c-e2a2-4c6c-8a10-a74796923f00</Project>
       <Visible>False</Visible>
     </NestedContentProject>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RGAMEZINCBMW.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
