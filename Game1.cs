@@ -45,6 +45,7 @@ namespace Othello
         Int32 rise;
         Int32 run;
         SpriteFont font1;
+        SpriteFont menufont;
         Mode mode = Mode.startscreen;
         Menu.Menu menu = new Othello.Menu.Menu();
         Menu.Menu wierless = new Othello.Menu.Menu();
@@ -133,7 +134,7 @@ namespace Othello
             
             menu.Add(new Othello.Menu.MenuItem("Single Player", new Vector2(5, 5), true, Color.Red));
             menu.Add(new Othello.Menu.MenuItem("Multiplayer", new Vector2(5, 35), false, Color.White));
-            menu.Add(new Othello.Menu.MenuItem("Wireless Multiplayer", new Vector2(5, 65), false, Color.White));
+            menu.Add(new Othello.Menu.MenuItem("Wireless", new Vector2(5, 65), false, Color.White));
             menu.Add(new Othello.Menu.MenuItem("Exit", new Vector2(5, 95), false, Color.White));
             wierless.Add(new Othello.Menu.MenuItem("Host", new Vector2(5, 5), true, Color.Red));
             wierless.Add(new Othello.Menu.MenuItem("Join", new Vector2(5, 35), false, Color.White));
@@ -184,6 +185,7 @@ namespace Othello
            
             pop = Content.Load<Texture2D>("BlackOverlay");
             font1 = Content.Load<SpriteFont>("Arial");
+            menufont = Content.Load<SpriteFont>("Menu");
             selected = selW;
             SM.Add(Content.Load<SoundEffect>("Sounds\\Ding"), "Ding");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Click"), "Click");
@@ -1058,10 +1060,10 @@ namespace Othello
                 */
                 foreach (Menu.MenuItem item in menu)
                 {
-                    spriteBatch.DrawString(font1, item.Text, item.Position, item.Color);
+                    spriteBatch.DrawString(menufont, item.Text, item.Position, item.Color);
                 }
                 spriteBatch.Draw(Content.Load<Texture2D>("GameThumbnail"), new Vector2(5, 125), Color.White);
-                spriteBatch.DrawString(font1, String.Format("Battery: {0}%", PowerStatus.BatteryLifePercent.ToString()), vec2frompoint(new Point(5, 290)), Color.White);
+                spriteBatch.DrawString(menufont, String.Format("Battery: {0}%", PowerStatus.BatteryLifePercent.ToString()), vec2frompoint(new Point(5, 290)), Color.White);
             }
             #endregion
             #region Wireless
@@ -1103,7 +1105,7 @@ namespace Othello
                         spriteBatch.DrawString(font1, "White Wins", timePosition, Color.White);
                     }
                 }
-                line[1] = networkSession.SimulatedLatency.Milliseconds.ToString();
+                line[1] = "";
                 line[2] = "Black: " + blackCount.ToString();
                 line[3] = "White: " + whiteCount.ToString();
                 if (isZuneHD)
@@ -1263,7 +1265,7 @@ namespace Othello
             {
                 foreach (Menu.MenuItem item in gameselect)
                 {
-                    spriteBatch.DrawString(font1, item.Text, item.Position, item.Color);
+                    spriteBatch.DrawString(menufont, item.Text, item.Position, item.Color);
                 }
             }
             #endregion
@@ -1272,7 +1274,7 @@ namespace Othello
             {
                 foreach (Menu.MenuItem item in wierless)
                 {
-                    spriteBatch.DrawString(font1, item.Text, item.Position, item.Color);
+                    spriteBatch.DrawString(menufont, item.Text, item.Position, item.Color);
                 }
             }
             #endregion

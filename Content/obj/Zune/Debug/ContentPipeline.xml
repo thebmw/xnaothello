@@ -98,7 +98,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Arial.xnb</Output>
-      <Time>2009-09-09T21:10:00.4024-04:00</Time>
+      <Time>2009-10-08T20:26:46.468-04:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Ding.wav</Source>
@@ -252,6 +252,15 @@
       <Options>None</Options>
       <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\White.xnb</Output>
       <Time>2009-09-21T08:41:40.9064643-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu.spritefont</Source>
+      <Name>Menu</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Menu.xnb</Output>
+      <Time>2009-10-08T20:42:29.288-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
