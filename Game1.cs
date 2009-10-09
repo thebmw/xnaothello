@@ -135,7 +135,8 @@ namespace Othello
             menu.Add(new Othello.Menu.MenuItem("Single Player", new Vector2(5, 5), true, Color.Red));
             menu.Add(new Othello.Menu.MenuItem("Multiplayer", new Vector2(5, 35), false, Color.White));
             menu.Add(new Othello.Menu.MenuItem("Wireless", new Vector2(5, 65), false, Color.White));
-            menu.Add(new Othello.Menu.MenuItem("Exit", new Vector2(5, 95), false, Color.White));
+            menu.Add(new Othello.Menu.MenuItem("Music", new Vector2(5, 95), false, Color.White));
+            menu.Add(new Othello.Menu.MenuItem("Exit", new Vector2(5, 125), false, Color.White));
             wierless.Add(new Othello.Menu.MenuItem("Host", new Vector2(5, 5), true, Color.Red));
             wierless.Add(new Othello.Menu.MenuItem("Join", new Vector2(5, 35), false, Color.White));
             wierless.Add(new Othello.Menu.MenuItem("Back", new Vector2(5, 65), false, Color.White));
@@ -404,7 +405,12 @@ namespace Othello
                             else if ((location.Position.Y - 5) < 120 && (location.Position.Y - 5) > 90)
                             {
                                 menu.selectedIndex = 3;
-                                Exit();
+                                Guide.Show();
+                            }
+                            else if ((location.Position.Y - 5) < 150 && (location.Position.Y - 5) > 120)
+                            {
+                                menu.selectedIndex = 3;
+                                Guide.Show();
                             }
                             break;
                         case TouchLocationState.Released:
@@ -428,6 +434,10 @@ namespace Othello
                     {
                         mode = Mode.game;
                         //Client();
+                    }
+                    else if (menu.selectedIndex == 3)
+                    {
+                        Guide.Show();
                     }
                     else
                     {
@@ -1062,7 +1072,7 @@ namespace Othello
                 {
                     spriteBatch.DrawString(menufont, item.Text, item.Position, item.Color);
                 }
-                spriteBatch.Draw(Content.Load<Texture2D>("GameThumbnail"), new Vector2(5, 125), Color.White);
+                spriteBatch.Draw(Content.Load<Texture2D>("GameThumbnail"), new Vector2(5, 155), Color.White);
                 spriteBatch.DrawString(menufont, String.Format("Battery: {0}%", PowerStatus.BatteryLifePercent.ToString()), vec2frompoint(new Point(5, 290)), Color.White);
             }
             #endregion
@@ -1771,8 +1781,12 @@ namespace Othello
             if (e.Gamer != networkSession.LocalGamers[0])
             {
                 mode = Mode.wireless;
+                if (networkSession.IsHost)
+                {
+                    networkSession.StartGame();
+                }
             }
-            networkSession.StartGame();
+            
             SM["Wifi Start"].Play();
             Log("Gamer joined");
         }
