@@ -14,8 +14,10 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace Othello
 {
+    
     public class Piece
     {
+        GraphicsDeviceManager graphics = Program.gdm;
         public Texture2D image;
         public Point boardplace;
         public Point screenplace;
@@ -29,11 +31,11 @@ namespace Othello
                     return true;
                 }
 
-                else if (new AccelerometerCapabilities().IsConnected)
+                else if (graphics.GraphicsDevice.DisplayMode.AspectRatio == float.Parse((9 / 16).ToString()))                 
                 {
                     return true;
                 }
-                
+
                 return false;
             }
         }
@@ -45,8 +47,9 @@ namespace Othello
         {
             image = pic;
             boardplace = bp;
-            screenplace = new Point(bp.X * (isZuneHD ? 34 : 30), bp.Y * (isZuneHD ? 34 : 30));
+            screenplace = new Point(bp.X * (Program.HD ? 34 : 30), bp.Y * (Program.HD ? 34 : 30));
             col = icol;
+            
         }
     }
     public class Texture2DColl

@@ -61,6 +61,7 @@ namespace Othello
         private int whiteFrontierCount;
         private int blackSafeCount;
         private int whiteSafeCount;
+        
         Boolean isZuneHD
         {
             get
@@ -70,7 +71,7 @@ namespace Othello
                     return true;
                 }
 
-                else if (new AccelerometerCapabilities().IsConnected)
+                else if (GraphicsDevice.DisplayMode.AspectRatio == float.Parse((9/16).ToString()));
                 {
                     return true;
                 }
@@ -91,6 +92,7 @@ namespace Othello
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            Program.gdm = graphics;
             Content.RootDirectory = "Content";
             gs = new GamerServicesComponent(this);
             Components.Add(new GamerServicesComponent(this));
@@ -139,9 +141,10 @@ namespace Othello
             menu.Add(new Othello.Menu.MenuItem("Exit", new Vector2(5, 125), false, Color.White));
             wierless.Add(new Othello.Menu.MenuItem("Host", new Vector2(5, 5), true, Color.Red));
             wierless.Add(new Othello.Menu.MenuItem("Join", new Vector2(5, 35), false, Color.White));
-            wierless.Add(new Othello.Menu.MenuItem("Back", new Vector2(5, 65), false, Color.White));
+            wierless.Add(new Othello.Menu.MenuItem("Back", new Vector2(5, 95), false, Color.White));
             newgame.Add(new Othello.Menu.MenuItem("New Game", new Vector2(5, 5), true, Color.Red));
             newgame.Add(new Othello.Menu.MenuItem("Continue Game", new Vector2(5, 35), false, Color.White));
+            Program.HD = isZuneHD;
             base.Initialize();
         }
 
@@ -180,8 +183,8 @@ namespace Othello
                 white = Content.Load<Texture2D>("Pieces\\HD\\WhitePiece");
                 blank = Content.Load<Texture2D>("Pieces\\HD\\Empty");
                 sel = Content.Load<Texture2D>("Pieces\\HD\\Selected");
-                selB = Content.Load<Texture2D>("Pieces\\HD\\SelW");
-                selW = Content.Load<Texture2D>("Pieces\\HD\\SelB");
+                selB = Content.Load<Texture2D>("Pieces\\HD\\SelB");
+                selW = Content.Load<Texture2D>("Pieces\\HD\\SelW");
             }
            
             pop = Content.Load<Texture2D>("BlackOverlay");
@@ -206,7 +209,10 @@ namespace Othello
             SM["Start"].Play();
             // TODO: use this.Content to load your game content here
             tx2dcol = new Texture2DColl(black, white, blank);
-            start.Start();
+            if (!isZuneHD)
+            {
+                start.Start();
+            }
         }
 
         /// <summary>
@@ -238,8 +244,35 @@ namespace Othello
         {
 
             TouchCollection curTouches = TouchPanel.GetState();
-            
+            #region StartScreen
+            if (mode == Mode.startscreen)
+            {
+                foreach (TouchLocation location in curTouches)
+                {
+                    int si = gettouch(Math.Round(decimal.Parse((location.Position.Y / 30).ToString()), 0));
+                    switch (location.State)
+                    {
+                        case TouchLocationState.Pressed:
+                            //Start tracking a particular touch location
+                            //In this example, you start the stroke from a special
+                            //area of the screen.
+                            mode = Mode.start;
 
+                            break;
+                        case TouchLocationState.Moved:
+
+
+                            break;
+                        case TouchLocationState.Released:
+
+
+
+
+                            break;
+                    }
+                }
+            }
+            #endregion
             GamePadState gps = GamePad.GetState(PlayerIndex.One);
             // Allows the game to exit
             Vector2 loca = new Vector2();
@@ -247,11 +280,12 @@ namespace Othello
             #region Multi
             if (mode == Mode.multi)
             {
+                
                 foreach (TouchLocation location in curTouches)
                 {
                     switch (location.State)
                     {
-                        case TouchLocationState.Pressed:
+                        case TouchLocationState.Released:
                             loca = location.Position;
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
@@ -259,13 +293,18 @@ namespace Othello
                             if (location.Position.X < 272 && location.Position.Y < 272)
                             {
 
-                                int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0).ToString());
-                                int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0).ToString());
+                                int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
+                                int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
                                 if (IsValidMove(turn, x, y))
                                 {
                                     MakeMove(turn, x, y);
                                     changeturn();
                                 }
+                                System.Diagnostics.Debug.WriteLine("X: " + x.ToString() + " Y: " + y.ToString());
+                            }
+                            else
+                            {
+                                mode = Mode.start;
                             }
                             break;
                         case TouchLocationState.Moved:
@@ -381,40 +420,53 @@ namespace Othello
             {
                 foreach (TouchLocation location in curTouches)
                 {
+                    int si = gettouch(Math.Round(decimal.Parse((location.Position.Y / 30).ToString()), 0));
                     switch (location.State)
                     {
                         case TouchLocationState.Pressed:
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
                             //area of the screen.
-                            if ((location.Position.Y - 5) < 30 && (location.Position.Y - 5) > 0)
+                            if (!(si > 4))
+                            {
+                                menu.selectedIndex = si;
+                            }
+                            
+                            break;
+                        case TouchLocationState.Moved:
+                            if (!(si > 4))
+                            {
+                                menu.selectedIndex = si;
+                            }
+
+                            break;                            
+                        case TouchLocationState.Released:
+                           
+                            if (si == 0)
                             {
                                 menu.selectedIndex = 0;
                                 mode = Mode.single;
                             }
-                            else if ((location.Position.Y - 5) < 60 && (location.Position.Y - 5) > 30)
+                            else if (si == 1)
                             {
                                 menu.selectedIndex = 1;
                                 mode = Mode.multi;
                             }
-                            else if ((location.Position.Y - 5) < 90 && (location.Position.Y - 5) > 60)
+                            else if (si == 2)
                             {
                                 menu.selectedIndex = 2;
                                 mode = Mode.game;
                             }
-                            else if ((location.Position.Y - 5) < 120 && (location.Position.Y - 5) > 90)
+                            else if (si == 3)
                             {
                                 menu.selectedIndex = 3;
                                 Guide.Show();
                             }
-                            else if ((location.Position.Y - 5) < 150 && (location.Position.Y - 5) > 120)
+                            else if (si == 4)
                             {
-                                menu.selectedIndex = 3;
-                                Guide.Show();
+                                menu.selectedIndex = 4;
+                                Exit();
                             }
-                            break;
-                        case TouchLocationState.Released:
-
 
 
                             break;
@@ -501,16 +553,30 @@ namespace Othello
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
                             //area of the screen.
+
                             if (location.Position.X < 272 && location.Position.Y < 272)
                             {
-                                int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0).ToString());
-                                int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0).ToString());
+                                int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
+                                int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
                                 if (IsValidMove(turn, x, y))
                                 {
-                                    MakeMove(turn, x, y);
-                                    sendMessage(new Point(x, y));
-                                    changeturn();
+                                    if (multiplayerRole == MultiplayerRole.Server && turn == -1)
+                                    {
+                                        MakeMove(turn, x, y);
+                                        sendMessage(new Point(x, y));
+                                        changeturn();
+                                    }
+                                    else if (multiplayerRole == MultiplayerRole.Client && turn == 1)
+                                    {
+                                        MakeMove(turn, x, y);
+                                        sendMessage(new Point(x, y));
+                                        changeturn();
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                mode = Mode.start;
                             }
                             break;
                         case TouchLocationState.Released:
@@ -676,14 +742,21 @@ namespace Othello
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
                             //area of the screen.
-                            if (location.Position.X < 272 && location.Position.Y < 272)
+                            if (turn == -1)
                             {
-                                int x = int.Parse(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0).ToString());
-                                int y = int.Parse(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0).ToString());
-                                if (IsValidMove(turn, x, y))
+                                if (location.Position.X < 272 && location.Position.Y < 272)
                                 {
-                                    MakeMove(turn, x, y);
-                                    changeturn();
+                                    int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
+                                    int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
+                                    if (IsValidMove(turn, x, y))
+                                    {
+                                        MakeMove(turn, x, y);
+                                        changeturn();
+                                    }
+                                }
+                                else
+                                {
+                                    mode = Mode.start;
                                 }
                             }
                             break;
@@ -884,7 +957,8 @@ namespace Othello
                             case TouchLocationState.Released:
                                 if (!moved)
                                 {
-                                    gameselect.selectedIndex = int.Parse(Math.Round(decimal.Parse(((location.Position.Y - 5) / 30).ToString())).ToString());
+                                    gameselect.selectedIndex = gettouch(Math.Round(decimal.Parse(((location.Position.Y - 5) / 34).ToString()), 0));
+                                
                                     Connect(gameselect.selectedIndex);
                                 }
 
@@ -930,6 +1004,52 @@ namespace Othello
             {
                 if (mode == Mode.game)
                 {
+                    foreach (TouchLocation location in curTouches)
+                    {
+                        int si = gettouch(Math.Round(decimal.Parse((location.Position.Y / 30).ToString()), 0));
+                        switch (location.State)
+                        {
+                            case TouchLocationState.Pressed:
+                                //Start tracking a particular touch location
+                                //In this example, you start the stroke from a special
+                                //area of the screen.
+                                if (!(si > 2))
+                                {
+                                    menu.selectedIndex = si;
+                                }
+
+                                break;
+                            case TouchLocationState.Moved:
+                                if (!(si > 3))
+                                {
+                                    menu.selectedIndex = si;
+                                }
+
+                                break;
+                            case TouchLocationState.Released:
+
+                                if (si == 0)
+                                {
+                                    menu.selectedIndex = 0;
+                                    mode = Mode.waiting;
+                                    createSession();
+                                }
+                                else if (si == 1)
+                                {
+                                    menu.selectedIndex = 1;
+                                    Client();
+                                }
+                                else if (si == 3)
+                                {
+                                    menu.selectedIndex = 3;
+                                    mode = Mode.start;
+                                }
+                                
+
+
+                                break;
+                        }
+                    }
                     if (!clickA && gps.IsButtonDown(Buttons.A))
                     {
                         if (wierless.selectedIndex == 0)
@@ -985,7 +1105,43 @@ namespace Othello
             }
             base.Update(gameTime);
         }
-       
+
+        public int gettouch(decimal i)
+        {
+            if (i <= 1)
+            {
+                return 0;
+            }
+            else if (i <= 2)
+            {
+                return 1;
+            }
+            else if (i <= 3)
+            {
+                return 2;
+            }
+            else if (i <= 4)
+            {
+                return 3;
+            }
+            else if (i <= 5)
+            {
+                return 4;
+            }
+            else if (i <= 6)
+            {
+                return 5;
+            }
+            else if (i <= 7)
+            {
+                return 6;
+            }
+            else
+            {
+                return 7;
+            }
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -994,10 +1150,12 @@ namespace Othello
         {
             
             spriteBatch.Begin();
-            if (startscreen)
+            if (startscreen && mode == Mode.startscreen)
             {
-                GraphicsDevice.Clear(Color.Black);
-                spriteBatch.Draw(isZuneHD ? StartScreenHD : StartScreen, new Vector2(0, 0), Color.White);
+                
+                    GraphicsDevice.Clear(Color.Black);
+                    spriteBatch.Draw(isZuneHD ? StartScreenHD : StartScreen, new Vector2(0, 0), Color.White);
+                
             }
             else
             {
@@ -1014,7 +1172,10 @@ namespace Othello
                     }
 
                 }
-                spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
+                if (!isZuneHD)
+                {
+                    spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
+                }
                 String[] line = new String[4];
                 Color col = Color.White;
                 if (turn == -1)
@@ -1045,10 +1206,17 @@ namespace Othello
                 line[3] = "White: " + whiteCount.ToString();
                 if (isZuneHD)
                 {
-                    spriteBatch.DrawString(font1, line[0], vec2frompoint(new Point(0, 270)), col);
-                    spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 270)), Color.Green);
-                    spriteBatch.DrawString(font1, line[2], vec2frompoint(new Point(0, 300)), Color.Black);
-                    spriteBatch.DrawString(font1, line[3], vec2frompoint(new Point(120, 300)), Color.White);
+                    
+                    spriteBatch.DrawString(font1, line[0], vec2frompoint(new Point(0, 300)), col);
+                    spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 300)), Color.Green);
+                    spriteBatch.DrawString(font1, line[2], vec2frompoint(new Point(0, 330)), Color.Black);
+                    spriteBatch.DrawString(font1, line[3], vec2frompoint(new Point(120, 330)), Color.White);
+                    /*
+                    spriteBatch.DrawString(font1, line[0], vec2frompoint(new Point(272, 60)), col, 3.141592653589793f, new Vector2(120, 30), 1.0f, SpriteEffects.FlipVertically, 2f);
+                    spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 60)), Color.Green, 0f, new Vector2(120, 30), 1.0f, SpriteEffects.FlipVertically, 2f);
+                    spriteBatch.DrawString(font1, line[2], vec2frompoint(new Point(272, 30)), Color.Black, 0f, new Vector2(120, 30), 1.0f, SpriteEffects.FlipVertically, 2f);
+                    spriteBatch.DrawString(font1, line[3], vec2frompoint(new Point(120, 30)), Color.White, 0f, new Vector2(120, 30), 1.0f, SpriteEffects.FlipVertically, 2f);
+                    */
                 }
                 else
                 {
@@ -1087,7 +1255,10 @@ namespace Othello
                     }
 
                 }
-                spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
+                if (!isZuneHD)
+                {
+                    spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
+                }
                 String[] line = new String[4];
                 Color col = Color.White;
                 if (turn == -1)
@@ -1157,7 +1328,10 @@ namespace Othello
                     }
 
                 }
-                spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
+                if (!isZuneHD)
+                {
+                    spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
+                }
                 String[] line = new String[4];
                 Color col = Color.White;
                 if (turn == -1)
@@ -1288,12 +1462,7 @@ namespace Othello
                 }
             }
             #endregion
-            if (!this.IsActive)
-            {
-                spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
-                spriteBatch.DrawString(font1, "The hold switch is on.", new Vector2(30, 120), Color.Black);
-                
-            }
+            
             spriteBatch.End();
             // TODO: Add your drawing code here
 
@@ -1301,6 +1470,7 @@ namespace Othello
         }
         public Color transparent(byte persent)
         {
+            
             Color c = new Color();
             c.A = persent;
             c.B = 255;
@@ -1311,7 +1481,14 @@ namespace Othello
         #region Move code
         public Vector2 vec2frompoint(Point point)
         {
-            return new Vector2(float.Parse(point.X.ToString()), float.Parse(point.Y.ToString()));
+            //if (isZuneHD == true && mode == Mode.multi)
+           // {
+               // return new Vector2(float.Parse(point.X.ToString()), float.Parse((point.Y +60).ToString()));
+          //  }
+           // else
+           // {
+                return new Vector2(float.Parse(point.X.ToString()), float.Parse(point.Y.ToString()));
+          //  }
         }
         public bool winstart = false;
         bool gameover = false;
@@ -1936,8 +2113,15 @@ namespace Othello
                 {
                     if (turn == 1)
                     {
-                        //MakeComputerMove();
-                        t.Start();
+                        if (isZuneHD)
+                        {
+                            MakeComputerMove();
+                        }
+                        else
+                        {
+                            t.Start();
+                        }
+                        //t.Start();
                     }
                     else
                     {

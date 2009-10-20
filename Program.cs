@@ -7,6 +7,7 @@ namespace Othello
     {
         static public Boolean HD = false;
         public static ContentManager Content;
+        public static Microsoft.Xna.Framework.GraphicsDeviceManager gdm;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
