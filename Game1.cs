@@ -1188,19 +1188,7 @@ namespace Othello
                     line[0] = "White";
                     col = Color.White;
                 }
-                if (emptyCount == 0 || !HasAnyValidMove(1) && !HasAnyValidMove(-1))
-                {
-                    if (blackCount > whiteCount)
-                    {
-                        Vector2 timePosition = font1.MeasureString("Black Wins");
-                        spriteBatch.DrawString(font1, "Black Wins", timePosition, Color.Black);
-                    }
-                    else
-                    {
-                        Vector2 timePosition = font1.MeasureString("White Wins");
-                        spriteBatch.DrawString(font1, "White Wins", timePosition, Color.White);
-                    }
-                }
+                
                 line[1] = "Empty: " + emptyCount.ToString();
                 line[2] = "Black: " + blackCount.ToString();
                 line[3] = "White: " + whiteCount.ToString();
@@ -1224,6 +1212,23 @@ namespace Othello
                     spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 240)), Color.Green);
                     spriteBatch.DrawString(font1, line[2], vec2frompoint(new Point(0, 270)), Color.Black);
                     spriteBatch.DrawString(font1, line[3], vec2frompoint(new Point(120, 270)), Color.White);
+                }
+                if (emptyCount == 0 || !HasAnyValidMove(1) && !HasAnyValidMove(-1))
+                {
+                    if (blackCount > whiteCount)
+                    {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
+                        Vector2 timePosition = font1.MeasureString("Black Wins");
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
+                        Vector2 timePosition = font1.MeasureString("White Wins");
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
+                    }
                 }
             }
             #endregion
@@ -1271,21 +1276,7 @@ namespace Othello
                     line[0] = "White";
                     col = Color.White;
                 }
-                if (emptyCount == 0 || !HasAnyValidMove(1) && !HasAnyValidMove(-1))
-                {
-                    if (blackCount > whiteCount)
-                    {
-                        Vector2 timePosition = font1.MeasureString("Black Wins");
-                        Win(-1);
-                        spriteBatch.DrawString(font1, "Black Wins", timePosition, Color.Black);
-                    }
-                    else
-                    {
-                        Vector2 timePosition = font1.MeasureString("White Wins");
-                        Win(1);
-                        spriteBatch.DrawString(font1, "White Wins", timePosition, Color.White);
-                    }
-                }
+               
                 line[1] = "";
                 line[2] = "Black: " + blackCount.ToString();
                 line[3] = "White: " + whiteCount.ToString();
@@ -1314,6 +1305,23 @@ namespace Othello
                 else
                 {
                     spriteBatch.DrawString(font1, "Server", vec2frompoint(new Point(120, 300)), Color.Black);
+                }
+                if (emptyCount == 0 || !HasAnyValidMove(1) && !HasAnyValidMove(-1))
+                {
+                    if (blackCount > whiteCount)
+                    {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
+                        Vector2 timePosition = font1.MeasureString("Black Wins");
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
+                        Vector2 timePosition = font1.MeasureString("White Wins");
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
+                    }
                 }
             }
             #endregion
@@ -1344,23 +1352,7 @@ namespace Othello
                     line[0] = "White";
                     col = Color.White;
                 }
-                if (emptyCount == 0 || !HasAnyValidMove(1) && !HasAnyValidMove(-1))
-                {
-                    if (blackCount > whiteCount)
-                    {
-                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
-                        Vector2 timePosition = font1.MeasureString("Black Wins");
-                        //Win(1);
-                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
-                    }
-                    else
-                    {
-                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
-                        Vector2 timePosition = font1.MeasureString("White Wins");
-                        //Win(1);
-                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
-                    }
-                }
+                
                 line[1] = "Empty: " + emptyCount.ToString();
                 line[2] = "Black: " + blackCount.ToString();
                 line[3] = "White: " + whiteCount.ToString();
@@ -1378,6 +1370,23 @@ namespace Othello
                     //spriteBatch.DrawString(font1, line[1], vec2frompoint(new Point(120, 240)), Color.Green);
                     spriteBatch.DrawString(font1, line[2], vec2frompoint(new Point(0, 270)), Color.Black);
                     spriteBatch.DrawString(font1, line[3], vec2frompoint(new Point(120, 270)), Color.White);
+                }
+                if (emptyCount == 0 || !HasAnyValidMove(1) && !HasAnyValidMove(-1))
+                {
+                    if (blackCount > whiteCount)
+                    {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
+                        Vector2 timePosition = font1.MeasureString("Black Wins");
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
+                        Vector2 timePosition = font1.MeasureString("White Wins");
+                        //Win(1);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
+                    }
                 }
             }
             #endregion
