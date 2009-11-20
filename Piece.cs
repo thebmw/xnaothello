@@ -31,11 +31,6 @@ namespace Othello
                     return true;
                 }
 
-                else if (graphics.GraphicsDevice.DisplayMode.AspectRatio == float.Parse((9 / 16).ToString()))                 
-                {
-                    return true;
-                }
-
                 return false;
             }
         }
