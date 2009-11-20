@@ -59,3 +59,4 @@ C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Sblank.xnb
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Swhite.xnb
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\White.xnb
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Menu.xnb
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Win2.xnb
