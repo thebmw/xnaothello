@@ -1,24 +1,26 @@
 f601b0cf817a4c639ea9d6ce540b050e
 0
-ANW Zune
+ANW ZUNE
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\
-128978488900000000
+129044996280000000
 C:\Dev\Zune\Othello\Othello\GameThumbnail.png
 2009-09-10T01:10:05.8984000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Othello.exe
-2009-10-09T02:12:02.7790000Z
+2009-12-05T15:18:55.5650000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Arial.xnb
 2009-10-09T00:29:50.1390000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\BlackOverlay.xnb
 2009-09-17T19:49:17.1200000Z
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\BlackoverlayHD.xnb
+2009-11-26T20:01:16.3980000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\GameThumbnail.xnb
 2009-09-17T19:49:17.3890000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Menu.xnb
-2009-10-09T00:42:31.8410000Z
+2009-11-26T20:15:29.5490000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreen.xnb
-2009-09-17T19:49:17.7840000Z
+2009-10-24T03:12:55.8400000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\StartScreenHD.xnb
-2009-09-17T19:49:18.1600000Z
+2009-10-24T03:12:56.1600000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Click.xnb
 2009-09-17T19:49:20.9100000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Ding.xnb
@@ -41,6 +43,8 @@ C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Turn.xnb
 2009-09-17T19:49:21.0610000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Win.xnb
 2009-09-17T19:49:36.1270000Z
+C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Sounds\Win2.xnb
+2009-10-24T03:21:59.7630000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Black.xnb
 2009-09-21T20:24:49.7600000Z
 C:\Dev\Zune\Othello\Othello\bin\Zune\Debug\Content\Pieces\Blank.xnb
