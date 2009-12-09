@@ -188,7 +188,8 @@ namespace Othello
                 sel = Content.Load<Texture2D>("Pieces\\Sblank");
                 selB = Content.Load<Texture2D>("Pieces\\Sblack");
                 selW = Content.Load<Texture2D>("Pieces\\Swhite");
-            
+                pop = Content.Load<Texture2D>("BlackOverlay");
+                StartScreen = Content.Load<Texture2D>("StartScreen");
             }
             else
             {
@@ -198,9 +199,11 @@ namespace Othello
                 sel = Content.Load<Texture2D>("Pieces\\HD\\Selected");
                 selB = Content.Load<Texture2D>("Pieces\\HD\\SelB");
                 selW = Content.Load<Texture2D>("Pieces\\HD\\SelW");
+                pop = Content.Load<Texture2D>("BlackoverlayHD");
+                StartScreenHD = Content.Load<Texture2D>("StartScreenHD");
             }
            
-            pop = Content.Load<Texture2D>("BlackOverlay");
+            
             font1 = Content.Load<SpriteFont>("Arial");
             menufont = Content.Load<SpriteFont>("Menu");
             selected = selW;
@@ -217,8 +220,7 @@ namespace Othello
             SM.Add(Content.Load<SoundEffect>("Sounds\\Win"), "Win");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Win"), "Lose");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Win2"), "Win2");
-            StartScreen = Content.Load<Texture2D>("StartScreen");
-            StartScreenHD = Content.Load<Texture2D>("StartScreenHD");
+           
             //Controls = Content.Load<Help>("Help\\Controls");
             SM["Start"].Play();
             // TODO: use this.Content to load your game content here
@@ -310,11 +312,11 @@ namespace Othello
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
                             //area of the screen.
-                            if (location.Position.X < 272 && location.Position.Y < 272)
+                            if (location.Position.X <= 272 && location.Position.Y <= 272)
                             {
 
-                                int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
-                                int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
+                                int x = gettouchpos(location.Position.X);
+                                int y = gettouchpos(location.Position.Y);
                                 if (IsValidMove(turn, x, y))
                                 {
                                     MakeMove(turn, x, y);
@@ -322,12 +324,19 @@ namespace Othello
                                 }
                                 System.Diagnostics.Debug.WriteLine("X: " + x.ToString() + " Y: " + y.ToString());
                             }
-                            else
+                            else if (location.Position.Y >= 400)
                             {
                                 mode = Mode.start;
                             }
                             break;
                         case TouchLocationState.Moved:
+                            if (location.Position.X <= 272 && location.Position.Y <= 272)
+                            {
+                                int x = gettouchpos(location.Position.X);
+                                int y = gettouchpos(location.Position.Y);
+                                selectedboard = new Point(x, y);
+                                setsel();
+                            }
                             
                             
 
@@ -600,15 +609,15 @@ namespace Othello
                 {
                     switch (location.State)
                     {
-                        case TouchLocationState.Pressed:
+                        case TouchLocationState.Released:
                             //Start tracking a particular touch location
                             //In this example, you start the stroke from a special
                             //area of the screen.
 
-                            if (location.Position.X < 272 && location.Position.Y < 272)
+                            if (location.Position.X <= 272 && location.Position.Y <= 272)
                             {
-                                int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
-                                int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
+                                int x = gettouchpos(location.Position.X);
+                                int y = gettouchpos(location.Position.Y);
                                 if (IsValidMove(turn, x, y))
                                 {
                                     if (multiplayerRole == MultiplayerRole.Server && turn == -1)
@@ -625,13 +634,20 @@ namespace Othello
                                     }
                                 }
                             }
-                            else
+                            else if (location.Position.Y >= 400)
                             {
                                 mode = Mode.start;
                             }
                             break;
-                        case TouchLocationState.Released:
-
+                        case TouchLocationState.Moved:
+                            if (location.Position.X <= 272 && location.Position.Y <= 272)
+                            {
+                                int x = gettouchpos(location.Position.X);
+                                int y = gettouchpos(location.Position.Y);
+                                selectedboard = new Point(x, y);
+                                setsel();
+                            }
+                            
 
 
                             break;
@@ -795,33 +811,30 @@ namespace Othello
                             //area of the screen.
                             if (turn == -1)
                             {
-                                if (location.Position.X < 272 && location.Position.Y < 272)
+                                if (location.Position.X <= 272 && location.Position.Y <= 272)
                                 {
-                                    int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
-                                    int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
+                                    int x = gettouchpos(location.Position.X);
+                                    int y = gettouchpos(location.Position.Y);
                                     selectedboard = new Point(x, y);
                                     setsel();
                                 }
-                                else
-                                {
-                                    mode = Mode.start;
-                                }
+                                
                             }
                             break;
                         case TouchLocationState.Released:
                             if (turn == -1)
                             {
-                                if (location.Position.X < 272 && location.Position.Y < 272)
+                                if (location.Position.X <= 272 && location.Position.Y <= 272)
                                 {
-                                    int x = gettouch(Math.Round(decimal.Parse((location.Position.X / 34).ToString()), 0));
-                                    int y = gettouch(Math.Round(decimal.Parse((location.Position.Y / 34).ToString()), 0));
+                                    int x = gettouchpos(location.Position.X);
+                                    int y = gettouchpos(location.Position.Y);
                                     if (IsValidMove(turn, x, y))
                                     {
                                         MakeMove(turn, x, y);
                                         changeturn();
                                     }
                                 }
-                                else
+                                else if (location.Position.Y >= 400)
                                 {
                                     mode = Mode.start;
                                 }
@@ -1163,6 +1176,7 @@ namespace Othello
             #endregion
             t.Check();
             start.Check();
+            
             if (PowerStatus.BatteryChargeStatus == BatteryChargeStatus.Critical)
             {
                 this.Exit();
@@ -1205,6 +1219,41 @@ namespace Othello
                 return 7;
             }
         }
+        public int gettouchpos(float i)
+        {
+            if (i <= 34)
+            {
+                return 0;
+            }
+            else if (i <= 68)
+            {
+                return 1;
+            }
+            else if (i <= 102)
+            {
+                return 2;
+            }
+            else if (i <= 136)
+            {
+                return 3;
+            }
+            else if (i <= 170)
+            {
+                return 4;
+            }
+            else if (i <= 204)
+            {
+                return 5;
+            }
+            else if (i <= 238)
+            {
+                return 6;
+            }
+            else
+            {
+                return 7;
+            }
+        }
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -1214,6 +1263,7 @@ namespace Othello
         {
             
             spriteBatch.Begin();
+            #region Startscreen
             if (startscreen && mode == Mode.startscreen)
             {
                 
@@ -1225,6 +1275,7 @@ namespace Othello
             {
                 GraphicsDevice.Clear(Color.Green);
             }
+            #endregion
             #region Multi
             if (mode == Mode.multi)
             {
@@ -1236,10 +1287,9 @@ namespace Othello
                     }
 
                 }
-                if (!isZuneHD)
-                {
+               
                     spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
-                }
+                
                 String[] line = new String[4];
                 Color col = Color.White;
                 if (turn == -1)
@@ -1284,14 +1334,14 @@ namespace Othello
                         spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("Black Wins");
                         //Win(1);
-                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2((isZuneHD ? 34 : 30), (isZuneHD ? 240 : 120)), Color.Black);
                     }
                     else
                     {
                         spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("White Wins");
                         //Win(1);
-                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2((isZuneHD ? 34 : 30), (isZuneHD ? 240 : 120)), Color.White);
                     }
                 }
             }
@@ -1309,8 +1359,17 @@ namespace Othello
                 {
                     spriteBatch.DrawString(menufont, item.Text, item.Position, item.Color);
                 }
-                spriteBatch.Draw(Content.Load<Texture2D>("GameThumbnail"), new Vector2(5, 155), Color.White);
-                spriteBatch.DrawString(menufont, String.Format("Battery: {0}%", PowerStatus.BatteryLifePercent.ToString()), vec2frompoint(new Point(5, 290)), Color.White);
+                //spriteBatch.Draw(Content.Load<Texture2D>("GameThumbnail"), new Vector2(5, 155), Color.White);
+                if (!isZuneHD)
+                {
+                    //spriteBatch.DrawString(menufont, String.Format("Time Remaining: {0}", PowerStatus.BatteryLifeRemaining.ToString() == "" ? "Charging" : PowerStatus.BatteryLifeRemaining.ToString()), vec2frompoint(new Point(5, 260)), Color.White);
+                    spriteBatch.DrawString(menufont, String.Format("Battery: {0}%", PowerStatus.BatteryLifePercent.ToString()), vec2frompoint(new Point(5, 290)), Color.White);
+                }
+                else
+                {
+                    //spriteBatch.DrawString(menufont, String.Format("Time Remaining: {0}", PowerStatus.BatteryLifeRemaining.ToString() == "" ? "Charging" : PowerStatus.BatteryLifeRemaining.ToString()), vec2frompoint(new Point(5, 420)), Color.White);
+                    spriteBatch.DrawString(menufont, String.Format("Battery: {0}%", PowerStatus.BatteryLifePercent.ToString()), vec2frompoint(new Point(5, 450)), Color.White);
+                }
             }
             #endregion
             #region Wireless
@@ -1324,7 +1383,7 @@ namespace Othello
                     }
 
                 }
-                if (!isZuneHD)
+                if ((multiplayerRole == MultiplayerRole.Server && turn == -1) || (multiplayerRole == MultiplayerRole.Client && turn == 1))
                 {
                     spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
                 }
@@ -1377,14 +1436,14 @@ namespace Othello
                         spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("Black Wins");
                         //Win(1);
-                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2((isZuneHD ? 34 : 30), (isZuneHD ? 240 : 120)), Color.Black);
                     }
                     else
                     {
                         spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("White Wins");
                         //Win(1);
-                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2((isZuneHD ? 34 : 30), (isZuneHD ? 240 : 120)), Color.White);
                     }
                 }
             }
@@ -1400,9 +1459,10 @@ namespace Othello
                     }
 
                 }
-                
+                if (turn == -1)
+                {
                     spriteBatch.Draw(selected, vec2frompoint(selectedscreen), Color.White);
-                
+                }
                 String[] line = new String[4];
                 Color col = Color.White;
                 if (turn == -1)
@@ -1441,14 +1501,14 @@ namespace Othello
                         spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("Black Wins");
                         //Win(1);
-                        spriteBatch.DrawString(font1, "Black Wins", new Vector2(30, 120), Color.Black);
+                        spriteBatch.DrawString(font1, "Black Wins", new Vector2((isZuneHD ? 34 : 30), (isZuneHD ? 240 : 120)), Color.Black);
                     }
                     else
                     {
                         spriteBatch.Draw(pop, new Vector2(0, 0), transparent(200));
                         Vector2 timePosition = font1.MeasureString("White Wins");
                         //Win(1);
-                        spriteBatch.DrawString(font1, "White Wins", new Vector2(30, 120), Color.White);
+                        spriteBatch.DrawString(font1, "White Wins", new Vector2((isZuneHD ? 34 : 30), (isZuneHD ? 240 : 120)), Color.White);
                     }
                 }
             }
@@ -1533,8 +1593,7 @@ namespace Othello
                     spriteBatch.DrawString(menufont, item.Text, item.Position, item.Color);
                 }
             }
-            #endregion
-            
+            #endregion            
             spriteBatch.End();
             // TODO: Add your drawing code here
 
