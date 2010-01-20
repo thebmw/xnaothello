@@ -2044,10 +2044,10 @@ namespace Othello
             this.multiplayerRole = MultiplayerRole.Server;
             Log("Server");
             //createSession();
-            NetworkSessionProperties nsp = new NetworkSessionProperties();
-            nsp[0] = 41523457;
-            this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2, 0, nsp);
-           
+            //NetworkSessionProperties nsp = new NetworkSessionProperties();
+            //nsp[0] = 41523457;
+            //this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2, 0, nsp);
+            this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2);
 
             this.networkSession.GamerJoined += new EventHandler<GamerJoinedEventArgs>(networkSession_GamerJoined);
             this.networkSession.GamerLeft += new EventHandler<GamerLeftEventArgs>(networkSession_GamerLeft);
