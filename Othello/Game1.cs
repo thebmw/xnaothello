@@ -219,8 +219,8 @@ namespace Othello
             SM.Add(Content.Load<SoundEffect>("Sounds\\ModeStart"), "Mode Start");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Turn"), "Change Turn");
             SM.Add(Content.Load<SoundEffect>("Sounds\\Win"), "Win");
-//            SM.Add(Content.Load<SoundEffect>("Sounds\\Win"), "Lose");
-            SM.Add(Content.Load<SoundEffect>("Sounds\\Win2"), "Win2");
+
+            //SM.Add(Content.Load<SoundEffect>("Sounds\\Win2"), "Win2");
            
             //Controls = Content.Load<Help>("Help\\Controls");
             SM["Start"].Play();
@@ -1007,6 +1007,24 @@ namespace Othello
             #region Waiting
             if (mode == Mode.waiting)
             {
+                foreach (TouchLocation location in curTouches)
+                {
+                    switch (location.State)
+                    {
+                        
+                        case TouchLocationState.Released:
+                            
+                            if (location.Position.Y >= 400)
+                            {
+                                
+                                networkSession.Dispose();
+                                mode = Mode.start;
+                            }
+
+
+                            break;
+                    }
+                }
                 if (this.networkSession != null)
                 {
                     this.networkSession.Update();
@@ -1650,7 +1668,7 @@ namespace Othello
                     try
                     {
                         
-                        SM[col == -1 ? "Win2" : "Win"].Play();
+                        SM["Win"].Play();
                     }
                     catch(Exception)
                     {
@@ -1661,11 +1679,11 @@ namespace Othello
                 {
                     if (multiplayerRole == MultiplayerRole.Server)
                     {
-                        SM[col == -1 ? "Win2" : "Win"].Play();
+                        SM["Win"].Play();
                     }
                     else
                     {
-                        SM[col == 1 ? "Win2" : "Win"].Play();
+                        SM["Win"].Play();
                     }
                 }
             }
@@ -1888,9 +1906,11 @@ namespace Othello
             {
                 AvailableNetworkSessionCollection availableSessions = NetworkSession.EndFind(result);
                 sessions = availableSessions;
+                
                 if (availableSessions.Count == 0)
                 {
                     mode = Mode.start;
+                    
                 }
                 else
                 {
@@ -1898,8 +1918,7 @@ namespace Othello
                     
                     foreach (AvailableNetworkSession s in availableSessions)
                     {
-                        if (s.CurrentGamerCount <2)
-                        {
+                        
                             //if (s.SessionProperties.Count > 0)
                             //{
                               //  if (s.SessionProperties[0] == 41523457)
@@ -1908,7 +1927,7 @@ namespace Othello
                                     x = x + 30;
                                 //}
                             //}
-                        }
+                        
                     }
                     mode = Mode.gameselect;
                 }
@@ -1918,7 +1937,7 @@ namespace Othello
             catch (Microsoft.Xna.Framework.Net.NetworkException e)
             {
                 Log("ERROR: WIFI NOT ON");
-
+                Log(e.Message);
             }
         }
         AvailableNetworkSessionCollection sessions;
@@ -1947,6 +1966,7 @@ namespace Othello
             catch (NetworkException exception)
             {
                 this.Log(exception.Message);
+                Log(exception.StackTrace);
             }
         }
         void sendMessage(Point Message)
@@ -2047,15 +2067,23 @@ namespace Othello
             //NetworkSessionProperties nsp = new NetworkSessionProperties();
             //nsp[0] = 41523457;
             //this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2, 0, nsp);
-            this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2);
+            try
+            {
+                this.networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2);
+                this.networkSession.GamerJoined += new EventHandler<GamerJoinedEventArgs>(networkSession_GamerJoined);
+                this.networkSession.GamerLeft += new EventHandler<GamerLeftEventArgs>(networkSession_GamerLeft);
+                this.networkSession.GameEnded += new EventHandler<GameEndedEventArgs>(networkSession_GameEnded);
+                this.networkSession.GameStarted += new EventHandler<GameStartedEventArgs>(networkSession_GameStarted);
+                this.networkSession.SessionEnded += new EventHandler<NetworkSessionEndedEventArgs>(networkSession_SessionEnded);
 
-            this.networkSession.GamerJoined += new EventHandler<GamerJoinedEventArgs>(networkSession_GamerJoined);
-            this.networkSession.GamerLeft += new EventHandler<GamerLeftEventArgs>(networkSession_GamerLeft);
-            this.networkSession.GameEnded += new EventHandler<GameEndedEventArgs>(networkSession_GameEnded);
-            this.networkSession.GameStarted += new EventHandler<GameStartedEventArgs>(networkSession_GameStarted);
-            this.networkSession.SessionEnded += new EventHandler<NetworkSessionEndedEventArgs>(networkSession_SessionEnded);
-
-            Log("Session started");
+                Log("Session started");
+            }
+            catch (Exception ex)
+            {
+                Log(ex.Message);
+            }
+            
+            
             //messages.Add("New Chat started");
             //maxLength = maxLength - 2 - Gamer.SignedInGamers[0].Gamertag.Length;
         }
@@ -2106,7 +2134,7 @@ namespace Othello
                 mode = Mode.wireless;
                 if (networkSession.IsHost)
                 {
-                    networkSession.StartGame();
+                   // networkSession.StartGame();
                 }
             }
             
