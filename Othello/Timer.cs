@@ -24,7 +24,7 @@ namespace Othello
         {
             
             DateTime n = DateTime.Now;
-            end = DateTime.Now.AddMilliseconds(Double.Parse(interval.ToString())); ;
+            end = DateTime.Now.AddMilliseconds(Double.Parse(interval.ToString()));
             running = true;
             
             //Tick("Timer", new EventArgs());
