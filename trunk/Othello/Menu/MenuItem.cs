@@ -18,7 +18,6 @@ namespace Othello.Menu
     {
         private String text;
         private Vector2 position;
-        private Boolean selected;
         private Microsoft.Xna.Framework.Graphics.Color color;
         public String Text
         {
@@ -32,8 +31,8 @@ namespace Othello.Menu
         }
         public Boolean Selected
         {
-            get { return selected; }
-            set { selected = value; }
+            get { return color == Microsoft.Xna.Framework.Graphics.Color.Red; }
+            set { color = value ? Microsoft.Xna.Framework.Graphics.Color.Red : Microsoft.Xna.Framework.Graphics.Color.White; }
         }
         public Microsoft.Xna.Framework.Graphics.Color Color
         {
@@ -44,11 +43,11 @@ namespace Othello.Menu
         {
 
         }
-        public MenuItem(String _text, Vector2 _position, Boolean _selected, Microsoft.Xna.Framework.Graphics.Color _color)
+        public MenuItem(String _text, Vector2 _position, Microsoft.Xna.Framework.Graphics.Color _color)
         {
             text = _text;
             position = _position;
-            selected = _selected;
+            
             color = _color;
         }
     }
